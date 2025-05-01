@@ -17,23 +17,32 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping
-    public boolean save(@RequestBody Book book) {
-        return bookService.save(book);
+    public Result save(@RequestBody Book book) {
+        boolean flag = bookService.save(book);
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR,flag);
     }
     @PutMapping
-    public boolean update(@RequestBody Book book) {
-        return  bookService.update(book);
+    public Result update(@RequestBody Book book) {
+        boolean flag = bookService.update(book);
+        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR,flag);
     }
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Integer id) {
-        return bookService.delete(id);
+    public Result delete(@PathVariable Integer id) {
+        boolean flag = bookService.delete(id);
+        return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR,flag);
     }
     @GetMapping("/{id}")
-    public Book findById(@PathVariable Integer id) {
-        return bookService.findById(id);
+    public Result findById(@PathVariable Integer id) {
+        Book book  = bookService.findById(id);
+        Integer code = book != null ? Code.GET_OK : Code.GET_ERR;
+        String msg= book != null ? "" : "数据查询失败，请重试";
+        return new Result(code,book,msg);
     }
     @GetMapping
-    public List<Book> findAll() {
-        return bookService.findAll();
+    public Result findAll() {
+        List<Book> all = bookService.findAll();
+        Integer code = all != null ? Code.GET_OK : Code.GET_ERR;
+        String msg= all != null ? "" : "数据查询失败，请重试";
+        return new Result(code,all,msg);
     }
 }
