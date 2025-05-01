@@ -40,6 +40,9 @@ public class BookController {
     }
     @GetMapping
     public Result findAll() {
+
+//        int i = 1/0;
+
         List<Book> all = bookService.findAll();
         Integer code = all != null ? Code.GET_OK : Code.GET_ERR;
         String msg= all != null ? "" : "数据查询失败，请重试";
