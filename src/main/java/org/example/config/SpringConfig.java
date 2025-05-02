@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan({"org.example.service"})
+@ComponentScan({"org.example.service","org.example.config"})
 //需要添加/
 @PropertySource("classpath:jdbc.properties")
 @Import({JdbcConfig.class, MyBatisConfig.class})
