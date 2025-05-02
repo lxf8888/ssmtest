@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@ComponentScan("org.example.controller")
+@ComponentScan({"org.example.controller", "org.example.controller.interception"})
 @EnableWebMvc
 public class SpringMvcConfig {
+//    也可以将support继承写到这里
 }
