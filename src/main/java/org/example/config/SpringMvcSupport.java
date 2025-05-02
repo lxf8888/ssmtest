@@ -1,6 +1,7 @@
 package org.example.config;
 
 import org.example.controller.interception.ProjectInterceptor;
+import org.example.controller.interception.ProjectInterceptor2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -14,6 +15,9 @@ public class SpringMvcSupport implements WebMvcConfigurer {
     @Autowired
     private ProjectInterceptor projectInterceptor;
 
+    @Autowired
+    private ProjectInterceptor2 projectInterceptor2;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/pages/**").addResourceLocations("/pages/");
@@ -25,5 +29,6 @@ public class SpringMvcSupport implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(projectInterceptor).addPathPatterns("/books","/books/**");
+        registry.addInterceptor(projectInterceptor2).addPathPatterns("/books","/books/**");
     }
 }

@@ -30,6 +30,12 @@
 拦截器参数
 
 
+支持链式调用
+- 顺序： register 顺序
+- 调用顺序： pre1 pre2 method post2 post1 after2 after1
+- 拦截器中断（prehandler return false栓顺序（运行直观观察））
+
+
             
 
 
